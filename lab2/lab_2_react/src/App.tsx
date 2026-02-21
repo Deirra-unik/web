@@ -1,24 +1,23 @@
-import About from "./components/files/About";
-import Education from "./components/files/Education";
-import Experience from "./components/files/Experience";
-import Footer from "./components/files/Footer";
-import Header from "./components/files/Header";
-import Skills from "./components/files/Skills";
+import About from "./components/About";
+import Education from "./components/Education";
+import Experience from "./components/Experience";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Skills from "./components/Skills";
 
-
-function App() {
+const App: React.FC = () => {
   return (
-    <>
+    <div className="min-h-screen bg-white font-sans text-gray-900 flex flex-col w-full">
       <Header />
-      <main>
+      <main className="flex-1 w-full mx-auto px-6 py-4">
         <About />
         <Experience />
         <Education />
         <Skills />
       </main>
       <Footer />
-    </>
+    </div>
   );
-}
+};
 
 export default App;
