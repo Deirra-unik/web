@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Моє Портфоліо</title>
+    <link rel="stylesheet" href="styless.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo">Portfolio<span class="dot">.</span></div>
+        <ul class="nav-links">
+          <li><a href="#about">Про мене</a></li>
+          <li><a href="#comments">Відгуки</a></li>
+          <li><a href="#contact">Контакт</a></li>
+        </ul>
+        <button
+          id="themeToggle"
+          class="theme-toggle"
+          aria-label="Перемкнути тему"
+        >
+          <span class="toggle-icon">☀️</span>
+        </button>
+      </nav>
+    </header>
+
+    <section class="hero" id="about">
+      <div class="hero-content">
+        <p class="hero-tag">Розробник · Дизайнер · Ентузіаст</p>
+        <h1 class="hero-title">
+          Привіт, я <span class="accent">Гундерич Антон</span>
+        </h1>
+        <p class="hero-desc">
+          Студент факультету комп'ютерних наук. Захоплений веб-розробкою, UX та
+          сучасними технологіями.
+        </p>
+        <a href="#comments" class="btn-primary">Переглянути відгуки</a>
+      </div>
+      <div class="hero-decoration">
+        <div class="circle-big"></div>
+        <div class="circle-small"></div>
+      </div>
+    </section>
+
+    <section class="section" id="comments">
+      <div class="container">
+        <h2 class="section-title">Відгуки роботодавців</h2>
+        <p class="section-sub">Що говорять про мою роботу</p>
+        <div id="commentsContainer" class="comments-grid">
+          <div class="loader">Завантаження...</div>
+        </div>
+      </div>
+    </section>
+
+    <div id="modalOverlay" class="modal-overlay hidden">
+      <div class="modal">
+        <button id="closeModal" class="modal-close">✕</button>
+        <h2 class="modal-title">Зв'яжіться зі мною</h2>
+        <p class="modal-sub">Я буду радий почути від вас!</p>
+        <form
+          id="contactForm"
+          action="https://formspree.io/f/xykdnwzn"
+          method="POST"
+        >
+          <div class="form-group">
+            <label for="name">Ім'я</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Ваше ім'я"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="your@email.com"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="phone">Номер телефону</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="+380 XX XXX XX XX"
+            />
+          </div>
+          <div class="form-group">
+            <label for="message">Повідомлення</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              placeholder="Ваше повідомлення..."
+            ></textarea>
+          </div>
+          <button type="submit" class="btn-primary full-width">
+            Відправити
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <footer id="footer">
+      <div class="container">
+        <h3 class="footer-title">Інформація про систему</h3>
+        <div id="systemInfo" class="system-info-grid"></div>
+        <p class="footer-copy">© 2026 Гундерич Антон. Всі права захищені.</p>
+      </div>
+    </footer>
+
+    <script src="main.js"></script>
+  </body>
+</html>

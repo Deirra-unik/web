@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: 'Outfit', sans-serif;
+  }
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-stone-100 dark:bg-neutral-900;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-amber-600 dark:bg-amber-500 rounded-full;
+  }
+}
