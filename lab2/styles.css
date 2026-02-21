@@ -1,0 +1,284 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+/* ── CSS Variables ─────────────────────────────────────────── */
+:root {
+  --bg:        #0d0f14;
+  --surface:   #13161e;
+  --border:    #1f2330;
+  --accent:    #4fffb0;
+  --accent2:   #00c4ff;
+  --text:      #e8eaf0;
+  --muted:     #6b7288;
+  --heading:   #ffffff;
+  --mono:      'Space Mono', monospace;
+  --sans:      'DM Sans', sans-serif;
+  --radius:    12px;
+  --transition: 0.25s ease;
+}
+
+/* ── Reset ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Base ──────────────────────────────────────────────────── */
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.7;
+  min-height: 100vh;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(79,255,176,0.07), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(0,196,255,0.05), transparent);
+}
+
+/* ── Layout ────────────────────────────────────────────────── */
+header, main, footer {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── Header ────────────────────────────────────────────────── */
+header {
+  padding-top: 72px;
+  padding-bottom: 48px;
+  position: relative;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+}
+
+header h1 {
+  font-family: var(--mono);
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  font-weight: 700;
+  color: var(--heading);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+header > p {
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+/* ── Nav / Contact ─────────────────────────────────────────── */
+header nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+header nav ul li a,
+header nav ul li {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-decoration: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 5px 12px;
+  border-radius: 100px;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+header nav ul li a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ── Main Sections ─────────────────────────────────────────── */
+main {
+  padding-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, rgba(79,255,176,0.03) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* ── Section Headings ──────────────────────────────────────── */
+section h2 {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+section h2::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── About ─────────────────────────────────────────────────── */
+section:first-of-type p {
+  color: var(--text);
+  font-size: 1rem;
+  max-width: 680px;
+}
+
+/* ── Experience Articles ───────────────────────────────────── */
+article {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+article:last-child { border-bottom: none; }
+
+article h3 {
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--heading);
+  margin-bottom: 4px;
+}
+
+article time, article p:nth-of-type(1) {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+article p {
+  font-size: 0.9rem;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+article ul {
+  padding-left: 0;
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+article ul li {
+  font-size: 0.88rem;
+  color: var(--text);
+  padding-left: 18px;
+  position: relative;
+  margin-bottom: 4px;
+}
+
+article ul li::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ── Technologies Tag ──────────────────────────────────────── */
+article strong {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* ── Links inside articles ─────────────────────────────────── */
+article a {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--accent2);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition);
+}
+
+article a:hover { border-bottom-color: var(--accent2); }
+
+/* ── Skills ────────────────────────────────────────────────── */
+section ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+section ul li {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 5px 14px;
+  border-radius: 6px;
+  transition: border-color var(--transition), color var(--transition);
+}
+
+section ul li:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ── Education ─────────────────────────────────────────────── */
+section:has(article h3:only-of-type) article {
+  border-bottom: none;
+}
+
+/* ── Footer ────────────────────────────────────────────────── */
+footer {
+  text-align: center;
+  padding: 28px 24px;
+  border-top: 1px solid var(--border);
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+footer p {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+footer a:hover { text-decoration: underline; }
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  header, main, footer { padding-left: 16px; padding-right: 16px; }
+  section { padding: 22px 18px; }
+  header { padding-top: 48px; }
+}
