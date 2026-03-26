@@ -7,8 +7,8 @@ function collectSystemInfo() {
   else if (/Windows NT 6.1/.test(ua)) os = "Windows 7";
   else if (/Mac OS X/.test(ua))
     os =
-      "macOS " +
-      (ua.match(/Mac OS X ([\d_]+)/) || ["", ""])[1].replace(/_/g, ".");
+        "macOS " +
+        (ua.match(/Mac OS X ([\d_]+)/) || ["", ""])[1].replace(/_/g, ".");
   else if (/Android/.test(ua))
     os = "Android " + (ua.match(/Android ([\d.]+)/) || ["", ""])[1];
   else if (/iPhone|iPad/.test(ua)) os = "iOS";
@@ -78,7 +78,7 @@ async function loadComments() {
 
   try {
     const response = await fetch(
-      `https://jsonplaceholder.typicode.com/posts/${VARIANT_NUMBER}/comments`
+        `https://jsonplaceholder.typicode.com/posts/${VARIANT_NUMBER}/comments`
     );
 
     if (!response.ok) {
@@ -100,7 +100,7 @@ function renderComments(comments, container) {
 
   if (!comments.length) {
     container.innerHTML =
-      '<p style="grid-column:1/-1; color:var(--text-muted);">Коментарі не знайдено.</p>';
+        '<p style="grid-column:1/-1; color:var(--text-muted);">Коментарі не знайдено.</p>';
     return;
   }
 
@@ -121,11 +121,12 @@ function renderComments(comments, container) {
 
 function escapeHtml(str) {
   return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
 }
+
 
 function initModal() {
   const overlay = document.getElementById("modalOverlay");
@@ -134,9 +135,9 @@ function initModal() {
 
   if (!overlay || !closeBtn || !form) return;
 
-  const modalTimer = setTimeout(() => {
+  setTimeout(() => {
     overlay.classList.remove("hidden");
-  }, 1 * 1000);
+  }, 60 * 1000);
 
   closeBtn.addEventListener("click", () => {
     overlay.classList.add("hidden");
@@ -155,23 +156,37 @@ function initModal() {
     submitBtn.textContent = "Відправляємо...";
     submitBtn.disabled = true;
 
+    const data = {
+      name: document.getElementById("name").value.trim(),
+      email: document.getElementById("email").value.trim(),
+      subject: document.getElementById("subject").value.trim(),
+      message: document.getElementById("message").value.trim(),
+    };
+
     try {
-      const formData = new FormData(form);
-      const response = await fetch(form.action, {
+      const response = await fetch("/api/contact", {
         method: "POST",
-        body: formData,
-        headers: { Accept: "application/json" },
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
       });
+
+      const result = await response.json();
 
       if (response.ok) {
         submitBtn.textContent = "✓ Надіслано!";
         form.reset();
-        setTimeout(() => overlay.classList.add("hidden"), 2000);
+        setTimeout(() => {
+          overlay.classList.add("hidden");
+          submitBtn.textContent = "Відправити";
+          submitBtn.disabled = false;
+        }, 2000);
       } else {
-        throw new Error("Помилка сервера");
+        submitBtn.textContent = "Помилка. Спробуйте ще.";
+        submitBtn.disabled = false;
+        console.error("Помилка:", result.error);
       }
     } catch (err) {
-      submitBtn.textContent = "Помилка. Спробуйте ще.";
+      submitBtn.textContent = "Помилка мережі. Спробуйте ще.";
       submitBtn.disabled = false;
       console.error("Помилка відправки форми:", err);
     }
