@@ -5,6 +5,8 @@ const mailjet = Mailjet.apiConnect(
     process.env.MAILJET_API_SECRET as string
 );
 
+console.log(process.env.MAILJET_API_KEY,  process.env.MAILJET_API_SECRET)
+
 export interface ContactPayload {
     name: string;
     email: string;
